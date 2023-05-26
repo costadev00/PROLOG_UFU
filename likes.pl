@@ -1,0 +1,2 @@
+Bruxo(Hermione).
+Bruxo(Harry).
