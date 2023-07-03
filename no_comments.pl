@@ -1,0 +1,32 @@
+masculino(genivaldo).
+masculino(pedro).
+masculino(julio).
+feminino(maria).
+feminino(penelope).
+feminino(ana).
+
+pai(genivaldo,julio).
+pai(genivaldo,pedro).
+pai(genivaldo,penelope).
+pai(pedro,carlos).
+
+mae(maria,penelope).
+mae(maria,pedro).
+mae(maria,carlos).
+
+irmao(X,Y) :- pai(Z,X), pai(Z,Y), X \== Y, masculino(X).
+irma(X,Y) :- mae(Z,X), mae(Z,Y), X \== Y, feminino(X).
+irmao_completo(X,Y) :- pai(Z,X), pai(Z,Y), mae(W,X), mae(W,Y), X \== Y, masculino(X).
+irma_completa(X,Y) :- pai(Z,X), pai(Z,Y), mae(W,X), mae(W,Y), X \== Y, feminino(X).
+
+tio(X,Y) :- pai(Z,Y), irmao(X,Z).
+tia(X,Y) :- mae(Z,Y), irma(X,Z).
+tio_completo(X,Y) :- pai(Z,Y), irmao_completo(X,Z).
+tia_completa(X,Y) :- mae(Z,Y), irma_completa(X,Z).
+
+avo(X, Y) :- pai(X, Z), pai(Z, Y).
+avo(X, Y) :- pai(X, Z), mae(Z, Y).
+
+avof(X, Y) :- mae(X, Z), mae(Z, Y).
+avof(X, Y) :- mae(X, Z), pai(Z, Y).
+
